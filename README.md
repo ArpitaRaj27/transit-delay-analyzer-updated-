@@ -3,9 +3,9 @@
 **Which bus routes are reliable, and how much does weather mess with them?**
 An interactive dashboard built on a Python ETL pipeline that ingests GTFS schedule data, joins hourly weather, and surfaces daily reliability metrics per route.
 
-🔗 **[Open the live demo →](https://your-app.streamlit.app)** &nbsp;·&nbsp; 📂 [Source on GitHub](https://github.com/ArpitaRaj27/transit-delay-analyzer)
+🔗 **[Open the live demo →](https://transit-delay-analyzer.streamlit.app/)** &nbsp;·&nbsp; 📂 [Source on GitHub](https://github.com/ArpitaRaj27/transit-delay-analyzer-updated-)
 
-![KPI dashboard](screenshots/kpi_cards.png)
+![KPI dashboard](kpi_cards.png)
 
 ---
 
@@ -16,7 +16,7 @@ An interactive dashboard built on a Python ETL pipeline that ingests GTFS schedu
 - **Quantify weather impact** - scatter plot of daily precipitation vs. average delay
 - **Pull the data** - filter by date and route, then download a CSV
 
-![Charts](screenshots/charts.png)
+![Charts](charts.png)
 
 ---
 
