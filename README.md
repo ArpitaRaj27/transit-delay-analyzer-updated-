@@ -5,7 +5,7 @@ An interactive dashboard built on a Python ETL pipeline that ingests GTFS schedu
 
 🔗 **[Open the live demo →](https://transit-delay-analyzer.streamlit.app/)** &nbsp;·&nbsp; 📂 [Source on GitHub](https://github.com/ArpitaRaj27/transit-delay-analyzer-updated-)
 
-![KPI dashboard](kpi_cards.png)
+![KPI dashboard](screenshots/kpi_cards.png)
 
 ---
 
@@ -16,7 +16,7 @@ An interactive dashboard built on a Python ETL pipeline that ingests GTFS schedu
 - **Quantify weather impact** - scatter plot of daily precipitation vs. average delay
 - **Pull the data** - filter by date and route, then download a CSV
 
-![Charts](charts.png)
+![Charts](screenshots/charts.png)
 
 ---
 
