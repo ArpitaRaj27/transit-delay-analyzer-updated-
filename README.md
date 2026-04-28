@@ -35,8 +35,8 @@ I built this end-to-end, from raw data to deployed dashboard:
 ## Run it yourself
 
 ```bash
-git clone https://github.com/ArpitaRaj27/transit-delay-analyzer.git
-cd transit-delay-analyzer
+git clone https://github.com/ArpitaRaj27/transit-delay-analyzer-updated-.git
+cd transit-delay-analyzer-updated-
 pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
