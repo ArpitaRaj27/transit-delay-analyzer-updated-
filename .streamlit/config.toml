@@ -1,0 +1,10 @@
+[theme]
+# Transit-blue accent so multiselect chips and primary buttons stop being default red
+primaryColor = "#3B82F6"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1A1D24"
+textColor = "#F5F5F5"
+font = "sans serif"
+
+[server]
+headless = true
