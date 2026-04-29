@@ -33,7 +33,7 @@ st.markdown(
 st.caption(
     "ETL pipeline + interactive dashboard for GTFS transit reliability  ·  "
     "Python · SQL · Streamlit  ·  "
-    "[GitHub repo →](https://github.com/ArpitaRaj27/transit-delay-analyzer)"
+    "[GitHub repo →](https://github.com/ArpitaRaj27/transit-delay-analyzer-updated-)"
 )
 st.divider()
 
