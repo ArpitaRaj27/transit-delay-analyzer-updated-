@@ -26,7 +26,7 @@ def qdf(sql: str, params: dict | None = None) -> pd.DataFrame:
 st.set_page_config(page_title="Transit Delay Analyzer", layout="wide", page_icon="🚍")
 
 # Hero header — leads with a question, not a description
-st.title("🚍 Transit Delay Analyzer")
+st.title("Transit Delay Analyzer")
 st.markdown(
     "##### Which routes are reliable, and how much does weather affect them?"
 )
@@ -52,7 +52,7 @@ route_options = routes_all["route"].astype(str).tolist() if not routes_all.empty
 selected_routes = st.sidebar.multiselect("Routes", options=route_options, default=route_options)
 
 st.sidebar.divider()
-st.sidebar.caption(f"📅 Data window: **{data_min}** → **{data_max}**")
+st.sidebar.caption(f"Data window: **{data_min}** → **{data_max}**")
 st.sidebar.caption("Source: sample GTFS feed + simulated arrivals + Open-Meteo weather.")
 
 
@@ -96,7 +96,7 @@ if not weather_df.empty:
 # ============================================================
 # 1. AUTO-INSIGHTS — the headline analytical takeaways
 # ============================================================
-st.subheader("🔍 What the data says")
+st.subheader("What the data says")
 
 if df.empty:
     st.info("No data for the current filters. Widen the date range or add routes.")
@@ -108,11 +108,11 @@ else:
     best_route, best_val = by_route.index[0], by_route.iloc[0]
     worst_route, worst_val = by_route.index[-1], by_route.iloc[-1]
     insights.append(
-        f"🟢 **Most reliable: Route {best_route}** averages just "
+        f"➡️ **Most reliable: Route {best_route}** averages just "
         f"**{best_val:.2f} min** delay across the window."
     )
     insights.append(
-        f"🔴 **Least reliable: Route {worst_route}** averages "
+        f"➡️ **Least reliable: Route {worst_route}** averages "
         f"**{worst_val:.2f} min** delay — about **{(worst_val - best_val):.1f}× higher** "
         f"than Route {best_route}."
     )
@@ -122,7 +122,7 @@ else:
     worst_row = df.loc[worst_idx]
     if worst_row["avg_delay_min"] > 5:
         insights.append(
-            f"⚡ **Biggest disruption: Route {worst_row['route']} on "
+            f"➡️ **Biggest disruption: Route {worst_row['route']} on "
             f"{worst_row['day'].date()}** — average delay spiked to "
             f"**{worst_row['avg_delay_min']:.1f} min** (P95: {worst_row['p95_delay_min']:.1f} min)."
         )
@@ -136,18 +136,18 @@ else:
             if pd.notna(corr):
                 if corr > 0.4:
                     insights.append(
-                        f"🌧️ **Weather matters:** delay correlates with precipitation "
+                        f"**Weather matters:** delay correlates with precipitation "
                         f"(r = {corr:+.2f}) — wet days run noticeably slower."
                     )
                 elif corr < -0.4:
                     insights.append(
-                        f"☀️ **Counterintuitive:** delay *negatively* correlates with "
+                        f"**Counterintuitive:** delay *negatively* correlates with "
                         f"precipitation (r = {corr:+.2f}) in this window — likely a "
                         f"small-sample artifact worth more data."
                     )
                 else:
                     insights.append(
-                        f"☁️ **Weather signal is weak** in this window "
+                        f"**Weather signal is weak** in this window "
                         f"(precip↔delay r = {corr:+.2f}) — other factors dominate."
                     )
 
@@ -155,7 +155,7 @@ else:
     sys_rel = df["reliability_score"].mean()
     rel_label = "strong" if sys_rel >= 0.9 else "moderate" if sys_rel >= 0.75 else "weak"
     insights.append(
-        f"📊 **System-wide reliability is {rel_label}** "
+        f"**System-wide reliability is {rel_label}** "
         f"(avg score **{sys_rel:.1%}** across {df['route'].nunique()} routes, "
         f"{df['day'].nunique()} days)."
     )
@@ -168,7 +168,7 @@ st.divider()
 # ============================================================
 # 2. KPI ROW — with context, not just numbers
 # ============================================================
-st.subheader("📈 Headline metrics")
+st.subheader("Headline metrics")
 
 if df.empty:
     c1, c2, c3, c4 = st.columns(4)
@@ -193,7 +193,7 @@ st.divider()
 # ============================================================
 # 3. INTERACTIVE TRENDS — Altair with tooltips
 # ============================================================
-st.subheader("📉 How did each route trend?")
+st.subheader("How did each route trend?")
 st.caption("Hover any point for the exact value.")
 
 if df.empty:
@@ -223,7 +223,7 @@ else:
 colA, colB = st.columns([1, 1])
 
 with colA:
-    st.subheader("🏆 Routes ranked")
+    st.subheader("Routes ranked")
     if not df.empty:
         ranking = (
             df.groupby("route")
@@ -253,7 +253,7 @@ with colA:
         st.altair_chart(bar, width="stretch")
 
 with colB:
-    st.subheader("🗓️ Reliability heatmap")
+    st.subheader("Reliability heatmap")
     if not df.empty:
         heat = (
             alt.Chart(df)
@@ -282,7 +282,7 @@ st.divider()
 # ============================================================
 # 4. WEATHER EFFECT — interactive scatter
 # ============================================================
-st.subheader("🌧️ Does precipitation hurt performance?")
+st.subheader("Does precipitation hurt performance?")
 
 if df.empty or weather_df.empty:
     st.info("Not enough overlapping weather + delay data for the current filters.")
@@ -321,7 +321,7 @@ st.divider()
 # ============================================================
 # 5. SCORECARD — with conditional formatting
 # ============================================================
-st.subheader("📋 Full scorecard")
+st.subheader("Full scorecard")
 st.caption("Color-coded: 🟢 strong reliability / fast, 🔴 weak reliability / slow. Sortable by clicking column headers.")
 
 if df.empty:
@@ -347,7 +347,7 @@ else:
     )
     st.dataframe(styled, width="stretch", hide_index=True)
     st.download_button(
-        "⬇️ Download as CSV",
+        "Download as CSV ⬇️",
         score_df.to_csv(index=False).encode("utf-8"),
         file_name=f"scorecard_{date_from}_{date_to}.csv",
         mime="text/csv",
@@ -357,7 +357,7 @@ else:
 # 6. PER-ROUTE DRILL-DOWN
 # ============================================================
 st.divider()
-st.subheader("🔎 Drill into a single route")
+st.subheader("Drill into a single route")
 sel = st.selectbox("Pick a route", route_options or ["–"])
 detail = qdf(
     """
