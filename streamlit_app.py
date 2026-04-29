@@ -113,7 +113,7 @@ else:
     )
     insights.append(
         f"➡️ **Least reliable: Route {worst_route}** averages "
-        f"**{worst_val:.2f} min** delay — about **{(worst_val - best_val):.1f}× higher** "
+        f"**{worst_val:.2f} min** delay; about **{(worst_val - best_val):.1f}× higher** "
         f"than Route {best_route}."
     )
 
@@ -123,7 +123,7 @@ else:
     if worst_row["avg_delay_min"] > 5:
         insights.append(
             f"➡️ **Biggest disruption: Route {worst_row['route']} on "
-            f"{worst_row['day'].date()}** — average delay spiked to "
+            f"{worst_row['day'].date()}**; average delay spiked to "
             f"**{worst_row['avg_delay_min']:.1f} min** (P95: {worst_row['p95_delay_min']:.1f} min)."
         )
 
@@ -137,7 +137,7 @@ else:
                 if corr > 0.4:
                     insights.append(
                         f"**Weather matters:** delay correlates with precipitation "
-                        f"(r = {corr:+.2f}) — wet days run noticeably slower."
+                        f"(r = {corr:+.2f}) ; wet days run noticeably slower."
                     )
                 elif corr < -0.4:
                     insights.append(
