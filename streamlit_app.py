@@ -1,5 +1,5 @@
 """
-Transit Delay Analyzer — v2 dashboard
+Transit Delay Analyzer - v2 dashboard
 Adds auto-generated insights, interactive Altair charts, conditional formatting,
 and narrative section headers so the dashboard *explains* the data, not just displays it.
 """
